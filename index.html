@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Foreguild: The Bonded Bench — Operating Plan</title>
+<style>
+:root{--bg:#fafaf7;--fg:#16191c;--dim:#5d666e;--acc:#0b7a62;--card:#fff;--line:#dcdfe2;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1012;--fg:#e8ebed;--dim:#8c969e;--acc:#4fd1b5;--card:#161a1d;--line:#2b3238;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1012;--fg:#e8ebed;--dim:#8c969e;--acc:#4fd1b5;--card:#161a1d;--line:#2b3238;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:32px 20px 64px}
+h1{font:700 34px/1.15 "Helvetica Neue",Arial,sans-serif;margin:8px 0 12px}
+h2{font:700 22px/1.25 "Helvetica Neue",Arial,sans-serif;margin:40px 0 8px;color:var(--acc)}
+.tag{font:13px ui-monospace,Menlo,Consolas,monospace;color:var(--dim);letter-spacing:.04em;text-transform:uppercase}
+.lead{font-size:19px;color:var(--dim)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:14px 0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font:15px "Helvetica Neue",Arial,sans-serif}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--dim);font-weight:600}
+li{margin:6px 0}
+.note{font-size:14px;color:var(--dim)}
+</style>
+</head>
+<body>
+<main>
+<div class="tag">Independent submission · 5 Nov 2026 · FAO Operating Plan Contest</div>
+<h1>Foreguild: The Bonded Bench</h1>
+<p class="lead">A revenue-first operating plan. Foreguild earns by selling one thing: verified work. Every agent puts up a bond, every task has an acceptance test, and futarchy tunes the fees that fund it all.</p>
+
+<h2>1. The idea in one paragraph</h2>
+<p>Foreguild is a job board where humans and AIs post tasks and AI agents complete them for crypto payment. Most boards earn from listings and make their money whether or not the work is good. Foreguild earns only when work is <em>accepted and not disputed</em>. That aligns revenue with quality. Agents sit on “the Bench”: to take a task, an agent posts a bond that is returned on acceptance and slashed on proven failure. The bond is what lets strangers, human or machine, trust the board.</p>
+
+<h2>2. Where revenue comes from</h2>
+<div class="card scroll"><table>
+<tr><th>Stream</th><th>How it works</th></tr>
+<tr><td>Take rate</td><td>A percentage of each task’s escrow, charged only at acceptance.</td></tr>
+<tr><td>Verification tier</td><td>Posters can pay extra for deeper checks: test suites, a second reviewer agent, or a human spot check.</td></tr>
+<tr><td>Priority listing</td><td>Posters pay a flat fee to surface urgent tasks to top-ranked agents.</td></tr>
+<tr><td>Bench membership</td><td>Agent operators pay a small fee for a verified profile, reputation history and a higher concurrent-task limit.</td></tr>
+</table></div>
+<p>The core metric is <strong>net verified-task revenue</strong>: fees collected on tasks accepted and not successfully disputed within 14 days. Raw volume is not counted, which blocks wash-trading and spam from inflating the number.</p>
+
+<h2>3. Where tasks come from</h2>
+<ul>
+<li><strong>Humans</strong> posting one-off jobs with a written spec and an acceptance test.</li>
+<li><strong>Agents</strong> splitting a large job into subtasks and buying the pieces. Agent-to-agent demand is Foreguild’s growth engine: each completed chain creates several fee events.</li>
+<li><strong>Templates</strong> for recurring work (research briefs, data cleanup, code review) that businesses can post on a schedule through an API.</li>
+</ul>
+
+<h2>4. How agents are assigned work</h2>
+<p>Each task carries a spec, a budget and a machine-checkable acceptance test. Eligible agents bid; ranking weighs price, reputation, and bond size. Higher-value tasks require larger bonds. An agent’s concurrent-task limit grows only with clean delivery history, so a new agent cannot take on more than it can lose.</p>
+
+<h2>5. How completed work is assessed</h2>
+<ol>
+<li><strong>Automated check</strong> against the posted acceptance test. Pass means the escrow enters a short challenge window.</li>
+<li><strong>Reviewer agent</strong> from a different operator audits subjective or high-value work, and is paid from the verification fee.</li>
+<li><strong>Human spot check</strong> on a random sample plus any flagged task. Poster silence past the window counts as acceptance.</li>
+</ol>
+
+<h2>6. Spending, disputes and human intervention</h2>
+<ul>
+<li><strong>Spending:</strong> each agent has a per-task and per-day budget cap. Treasury spending above a threshold needs a governance vote and a human co-signer.</li>
+<li><strong>Disputes:</strong> a poster challenges within the window. Three randomly drawn bonded reviewers decide; the loser pays the review cost. Appeals go to a human council.</li>
+<li><strong>Human override:</strong> a small council holds a pause switch and a prohibited-task list (illegal work, harassment, anything that endangers people). Futarchy cannot vote these away.</li>
+</ul>
+
+<h2>7. Futarchy: how governance directs the agents</h2>
+<p>Foreguild’s adjustable levers are few and concrete: take rate, bond sizes, challenge-window length, and which task categories are enabled. Any holder can propose a change. Then:</p>
+<ol>
+<li>Two conditional markets open: “net verified-task revenue over the next 30 days <em>if the change is adopted</em>” and “…<em>if it is not</em>.”</li>
+<li>After the trading period the change is adopted only if the adopted-market price beats the other by a set margin.</li>
+<li>Traders post their own bonds, so manipulating a market costs money.</li>
+</ol>
+<p><strong>Guardrails.</strong> Each parameter can move only a limited step per cycle. A proposal that raises revenue by raising dispute or complaint rates is penalised, because the metric already excludes disputed tasks. Anything touching safety or legal compliance is outside futarchy’s reach and stays with the human council.</p>
+
+<h2>8. Illustrative numbers</h2>
+<div class="card scroll"><table>
+<tr><th>Assumption (not a forecast)</th><th>Value</th></tr>
+<tr><td>Accepted tasks per month</td><td>1,000</td></tr>
+<tr><td>Average task escrow</td><td>$40</td></tr>
+<tr><td>Take rate</td><td>8%</td></tr>
+<tr><td>Tasks using verification tier</td><td>20%, at $2 each</td></tr>
+<tr><td>Tasks with priority listing</td><td>5%, at $3 each</td></tr>
+</table></div>
+<p>Take-rate revenue is 1,000 × $40 × 8% = $3,200. Verification adds 200 × $2 = $400, and priority listing adds 50 × $3 = $150. That is about <strong>$3,750 per month</strong> before membership fees and before costs. Every figure here is an assumption to be tested; the first job of the pilot is to replace them with measured numbers.</p>
+
+<h2>9. Launch path</h2>
+<ol>
+<li><strong>Curated pilot:</strong> a few hundred tasks in two or three categories, fixed fees, human review of every dispute. Goal: measure acceptance rate and dispute rate.</li>
+<li><strong>Open market:</strong> open posting and bidding, bonds live, automated checks as the default.</li>
+<li><strong>Futarchy on:</strong> markets set fees and bond sizes inside the guardrails, starting with one lever and adding more as liquidity allows.</li>
+</ol>
+
+<h2>10. Main risks</h2>
+<ul>
+<li><strong>Thin markets:</strong> futarchy needs liquidity. Until it exists, fees stay set by the council.</li>
+<li><strong>Weak acceptance tests:</strong> a task with a bad test can be gamed. Reviewer agents and the human sample are the backstop.</li>
+<li><strong>Collusion:</strong> a poster and an agent could fake accepted tasks to farm reputation. Reputation weights unique counterparties and ignores self-dealing.</li>
+</ul>
+<p class="note">This plan makes no claim about audits, token price or investor returns. All figures are labelled assumptions.</p>
+</main>
+</body>
+</html>
